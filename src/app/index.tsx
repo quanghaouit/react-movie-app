@@ -10,24 +10,21 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
-import { GlobalStyle } from '../styles/global-styles';
+import { GlobalStyle } from 'styles/global-styles';
 
-import { HomePage } from './containers/HomePage/Loadable';
-import { NotFoundPage } from './containers/NotFoundPage/Loadable';
-
+import { NotFoundPage } from './components/NotFoundPage/Loadable';
+import { Layout } from './containers/layout/Loadable';
+import { Reducers } from './reducers';
 export function App() {
   return (
     <BrowserRouter>
-      <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
-      >
-        <meta name="description" content="A React Boilerplate application" />
+      <Helmet titleTemplate="%s" defaultTitle="React Movie App">
+        <meta name="description" content="A React Movie App" />
       </Helmet>
-
+      <Reducers />
       <Switch>
-        <Route exact path={process.env.PUBLIC_URL + '/'} component={HomePage} />
-        <Route component={NotFoundPage} />
+        <Route path="/404" exact component={NotFoundPage} />
+        <Route path="/" component={Layout} />
       </Switch>
       <GlobalStyle />
     </BrowserRouter>
