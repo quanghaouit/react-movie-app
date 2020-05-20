@@ -2,13 +2,16 @@ import React, { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { routes } from 'router/routes';
 
+import { Header } from 'app/components/Header/Loadable';
+import { Footer } from 'app/components/Footer/Loadable';
+
 const DEFAULT_ROUTE = '/homepage';
 const DEFAULT_404 = '/404';
 const loading = () => <div>Loading....</div>;
 export function Layout() {
   return (
-    <>
-      <h1>header</h1>
+    <div className="container">
+      <Header/>
       <hr />
       <Suspense fallback={loading()}>
         <Switch>
@@ -22,7 +25,7 @@ export function Layout() {
         </Switch>
       </Suspense>
       <hr />
-      <h1>footer</h1>
-    </>
+      <Footer/>
+    </div>
   );
 }

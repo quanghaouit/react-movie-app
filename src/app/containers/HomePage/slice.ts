@@ -13,19 +13,19 @@
 
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
-import { IMovieFormState, RepoErrorType } from './types';
+import { IHomePageFormState, RepoErrorType } from './types';
 import { Repo } from 'types/Repo';
 
 // The initial state of the GithubRepoForm container
-export const initialState: IMovieFormState = {
+export const initialState: IHomePageFormState = {
   loading: false,
   error: null,
-  numberLst: [],
-  numberStr: [],
+  gender: [],
+  movies: [],
 };
 
-const movieRepoFormSlice = createSlice({
-  name: 'movie',
+const homepageRepoFormSlice = createSlice({
+  name: 'homepage',
   initialState,
   reducers: {
     addArrayAndStr(
@@ -34,17 +34,17 @@ const movieRepoFormSlice = createSlice({
     ) {
       const a = action.payload.a;
       const b = action.payload.b;
-      state.numberLst.push(a);
-      state.numberStr.push(b);
+      state.gender.push(a);
+      state.movies.push(b);
     },
     loadRepos(state) {
       state.loading = true;
       state.error = null;
-      state.numberLst = [];
+      state.gender = [];
     },
     reposLoaded(state, action: PayloadAction<any>) {
       const repos = action.payload;
-      state.numberLst = repos;
+      state.movies = repos;
       state.loading = false;
     },
     repoError(state, action: PayloadAction<RepoErrorType>) {
@@ -54,4 +54,4 @@ const movieRepoFormSlice = createSlice({
   },
 });
 
-export const { actions, reducer, name: sliceKey } = movieRepoFormSlice;
+export const { actions, reducer, name: sliceKey } = homepageRepoFormSlice;

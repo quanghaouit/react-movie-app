@@ -1,10 +1,10 @@
 
 /* --- STATE --- */
-export interface IMovieFormState {
+export interface IHomePageFormState {
   loading: boolean;
   error?: RepoErrorType | null;
-  numberLst: number[],
-  numberStr: string[]
+  gender: Object[],
+  movies: Object[]
 }
 
 export enum RepoErrorType {

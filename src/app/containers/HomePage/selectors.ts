@@ -3,16 +3,16 @@ import { initialState } from './slice';
 import { createSelector } from '@reduxjs/toolkit';
 
 // // First select the relevant part from the state
-const selectDomain = (state: RootState) => state.movie || initialState;
+const selectDomain = (state: RootState) => state.homepage || initialState;
 
 export const selectNumber = createSelector(
   [selectDomain],
-  homepageState => homepageState.numberLst,
+  homepageState => homepageState.gender,
 );
 
 export const selectString = createSelector(
   [selectDomain],
-  homepageState => homepageState.numberStr,
+  homepageState => homepageState.movies,
 );
 
 // export const selectError = createSelector(

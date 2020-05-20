@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { useInjectReducer } from 'utils/redux-injectors';
 import { sliceKey, reducer, actions } from './slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Carousel } from 'app/components/Carousel/Loadable';
+
 
 export function HomePage() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
@@ -18,7 +20,11 @@ export function HomePage() {
         <title>Home</title>
         <meta name="description" content="Movie app" />
       </Helmet>
-      <span>HomePage</span>
+      <Carousel />
+      <hr />
+      <span>Home Page Bar</span>
+      <hr />
+      <span>List Movie</span>
     </>
   );
 }

@@ -12,7 +12,7 @@ import { RepoErrorType } from './types';
 /**
  * movies request/response handler
  */
-export function* getRepos() {
+export function* getPageMovies() {
   yield delay(500);
   // Select username from store
   const apikey: string = 'a7b3c9975791294647265c71224a88ad';
@@ -45,5 +45,5 @@ export function* homeFormSaga() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(actions.addArrayAndStr.type, getRepos);
+  yield takeLatest(actions.addArrayAndStr.type, getPageMovies);
 }
