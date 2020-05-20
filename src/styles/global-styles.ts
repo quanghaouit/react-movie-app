@@ -25,4 +25,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     font-size: inherit;
   }
+
+  .slick-slider .slick-dots .slick-active div {
+    background-color: #f50057 !important;
+  }
 `;

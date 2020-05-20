@@ -11,8 +11,7 @@ const loading = () => <div>Loading....</div>;
 export function Layout() {
   return (
     <div className="container">
-      <Header/>
-      <hr />
+      <Header />
       <Suspense fallback={loading()}>
         <Switch>
           {routes.map((route, idx) => {
@@ -24,8 +23,7 @@ export function Layout() {
           <Redirect from="*" to={DEFAULT_404} />
         </Switch>
       </Suspense>
-      <hr />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

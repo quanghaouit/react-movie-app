@@ -1,10 +1,12 @@
+// import { ICategory } from "types/category";
 
 /* --- STATE --- */
 export interface IHomePageFormState {
   loading: boolean;
   error?: RepoErrorType | null;
-  gender: Object[],
-  movies: Object[]
+  gender: number[];
+  movies: string[];
+  // categories: ICategory[]
 }
 
 export enum RepoErrorType {
@@ -15,7 +17,7 @@ export enum RepoErrorType {
 }
 
 // /*
-//   If you want to use 'ContainerState' keyword everywhere in your feature folder, 
+//   If you want to use 'ContainerState' keyword everywhere in your feature folder,
 //   instead of the 'HomePageState' keyword.
 // */
 // export type ContainerState = GithubRepoFormState;

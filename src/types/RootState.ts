@@ -1,6 +1,6 @@
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
-import { IHomePageFormState } from 'app/containers/HomePage/types';
+import { IHomePageFormState } from 'app/containers/HomePage/redux/types';
 
 /* 
   Because the redux-injectors injects your reducers asynchronously somewhere in your code

@@ -14,7 +14,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { IHomePageFormState, RepoErrorType } from './types';
-import { Repo } from 'types/Repo';
+// import { Repo } from 'types/Repo';
 
 // The initial state of the GithubRepoForm container
 export const initialState: IHomePageFormState = {
@@ -24,14 +24,11 @@ export const initialState: IHomePageFormState = {
   movies: [],
 };
 
-const homepageRepoFormSlice = createSlice({
+const homepageFormSlice = createSlice({
   name: 'homepage',
   initialState,
   reducers: {
-    addArrayAndStr(
-      state,
-      action: PayloadAction<{ a: number; b: string; c?: string }>,
-    ) {
+    addArrayAndStr(state, action: PayloadAction<{ a: number; b: string; c?: string }>) {
       const a = action.payload.a;
       const b = action.payload.b;
       state.gender.push(a);
@@ -54,4 +51,4 @@ const homepageRepoFormSlice = createSlice({
   },
 });
 
-export const { actions, reducer, name: sliceKey } = homepageRepoFormSlice;
+export const { actions, reducer, name: sliceKey } = homepageFormSlice;
