@@ -8,7 +8,7 @@ export function Header() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container fixed>
+      <Container>
         <Grid container spacing={2}>
           <Grid item xs>
             <Typography className={classes.title} noWrap>

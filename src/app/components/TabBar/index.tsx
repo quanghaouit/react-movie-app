@@ -6,10 +6,10 @@ import Typography from '@material-ui/core/Typography';
 
 const AntTabs = withStyles({
   root: {
-    borderBottom: '1px solid #e8e8e8',
+    borderBottom: '1px solid #eee',
   },
   indicator: {
-    backgroundColor: '#1890ff',
+    backgroundColor: '#f50057',
   },
 })(Tabs);
 
@@ -22,25 +22,20 @@ const AntTab = withStyles((theme: Theme) =>
       marginRight: theme.spacing(4),
       fontFamily: ['Helvetica', 'Arial', 'sans-serif'].join(','),
       '&:hover': {
-        color: '#40a9ff',
+        color: '#f50057',
         opacity: 1,
       },
       '&$selected': {
-        color: '#1890ff',
+        color: '#f50057',
         fontWeight: theme.typography.fontWeightMedium,
       },
       '&:focus': {
-        color: '#40a9ff',
+        color: '#f50057',
       },
     },
     selected: {},
   }),
 )((props: StyledTabProps) => <Tab disableRipple {...props} />);
-
-interface StyledTabsProps {
-  value: number;
-  onChange: (event: React.ChangeEvent<{}>, newValue: number) => void;
-}
 
 interface StyledTabProps {
   label: string;
@@ -53,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   padding: {
     padding: theme.spacing(3),
   },
-  demo1: {
+  tab: {
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -68,11 +63,12 @@ export function TabBar() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.demo1}>
+      <div className={classes.tab}>
         <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-          <AntTab label="Tab 1" />
-          <AntTab label="Tab 2" />
-          <AntTab label="Tab 3" />
+          <AntTab label="Popular" />
+          <AntTab label="Top Rated" />
+          <AntTab label="Upcomming" />
+          <AntTab label="Genner" />
         </AntTabs>
         <Typography className={classes.padding} />
       </div>

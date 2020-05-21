@@ -3,7 +3,7 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      paddingTop: '5px',
+      margin:'20px 0px 30px 0px',
       flexGrow: 1,
     },
     title: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '1px',
       color: '#ccc',
       border: 'none',
-    },
+    }
   }),
 );
 

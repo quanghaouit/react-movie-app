@@ -3,18 +3,7 @@ import Slider from 'react-slick';
 import { BannerCard } from '../BannerCard/Loadable';
 import { Box } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  box: {
-    width: '22px',
-    height: '8px',
-    borderRadius: '2px',
-    background: '#eee',
-    position: 'absolute',
-    bottom: '30px',
-  },
-});
+import useStyles from './ui';
 
 export function Carousel() {
   const classes = useStyles();
@@ -31,7 +20,7 @@ export function Carousel() {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <Slider {...settings}>
         <div>
           <BannerCard />

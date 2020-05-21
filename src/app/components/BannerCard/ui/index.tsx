@@ -65,11 +65,6 @@ const useStyles = makeStyles({
     padding: '2px',
     fontSize: '10px',
   },
-  rating: {
-    '& .MuiRating-root': {
-      color: 'red !important',
-    },
-  },
 });
 
 export default useStyles;

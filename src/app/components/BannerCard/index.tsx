@@ -9,7 +9,10 @@ const StyledRating = withStyles({
     color: '#f50057',
   },
   iconHover: {
-    color: '#ff3d47',
+    color: '#f50057',//'#ff3d47',
+  },
+  iconEmpty:{
+    color: '#eee',
   },
 })(Rating);
 
@@ -18,7 +21,7 @@ export function BannerCard() {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia className={classes.media} image="https://dyn1.heritagestatic.com/lf?set=path%5B5%2F0%2F7%2F4%2F5074169%5D&call=url%5Bfile%3Aproduct.chain%5D" title="Contemplative Reptile" />
+        <CardMedia className={classes.media} image="https://c4.wallpaperflare.com/wallpaper/602/875/645/chimera-wrath-of-the-titans-wallpaper-preview.jpg" title="Contemplative Reptile" />
         <CssBaseline />
         <Container className={classes.container}>
           <Grid container spacing={2}>
@@ -51,7 +54,7 @@ export function BannerCard() {
                     <Typography className={classes.reviews}>based on 3.546 reviews</Typography>
                   </Box>
                   <Box className={classes.point} color="secondary">
-                    <StyledRating name="half-rating-read" defaultValue={2.5} precision={0.5} className={classes.rating} readOnly />
+                    <StyledRating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
                     <Box className={classes.pointNumber}>3.4</Box>
                   </Box>
                 </Box>
