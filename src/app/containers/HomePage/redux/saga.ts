@@ -7,7 +7,7 @@ import { IMoviePageResponse, IGenres, ResErrorType } from './types';
 /**
  * api request key
  */
-const apikey: string = 'a7b3c9975791294647265c71224a88ad'; 
+const apikey: string = 'a7b3c9975791294647265c71224a88ad';
 /**
  * movies request/response handler
  */
@@ -39,7 +39,7 @@ export function* getPageMovies() {
  */
 export function* getGenres() {
   yield delay(500);
-  // Select movie genres 
+  // Select movie genres
   const requestURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}`;
 
   try {
@@ -67,7 +67,7 @@ export function* getGenres() {
 export function* getPopular() {
   yield delay(500);
   const page: number = yield select(selectLoadingPage);
-  // Select movie popular 
+  // Select movie popular
   const requestURL = `https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${apikey}`;
 
   try {
@@ -95,7 +95,7 @@ export function* getPopular() {
 export function* getUpcomming() {
   yield delay(500);
   const page: number = yield select(selectLoadingPage);
-  // Select movie popular 
+  // Select movie popular
   const requestURL = `https://api.themoviedb.org/3/movie/upcoming?page=${page}&api_key=${apikey}`;
 
   try {
@@ -123,7 +123,7 @@ export function* getUpcomming() {
 export function* getTopRated() {
   yield delay(500);
   const page: number = yield select(selectLoadingPage);
-  // Select movie popular 
+  // Select movie popular
   const requestURL = `https://api.themoviedb.org/3/movie/top_rated?page=${page}&api_key=${apikey}`;
 
   try {
@@ -155,4 +155,5 @@ export function* homeFormSaga() {
   // It will be cancelled automatically on component unmount
   yield takeLatest(actions.loadApi.type, getGenres);
   yield takeLatest(actions.loadApi.type, getPopular);
+  yield takeLatest(actions.loadgetTopRated.type, getTopRated);
 }

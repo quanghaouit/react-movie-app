@@ -47,6 +47,10 @@ const homepageFormSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
+    loadgetTopRated() {
+      // state.loading = true;
+      // state.error = null;
+    },
     resError(state, action: PayloadAction<ResErrorType>) {
       state.error = action.payload;
       state.loading = false;

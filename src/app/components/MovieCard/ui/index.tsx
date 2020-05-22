@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { colors } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -8,7 +7,7 @@ const useStyles = makeStyles({
   media: {
     height: 300,
   },
-  title:{
+  title: {
     display: 'inline-block',
   },
   content: {

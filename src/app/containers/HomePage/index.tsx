@@ -22,7 +22,7 @@ export function HomePage() {
 
   const movies = useSelector(selectMovies);
   const genres = useSelector(selectGenres);
-  const map_genres = useSelector(selectMapGenres);
+  const mapGenres = useSelector(selectMapGenres);
   // const isLoading = useSelector(selectLoading);
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
@@ -43,11 +43,11 @@ export function HomePage() {
       <Container>
         <TabBar />
         <Grid container spacing={3}>
-          {movies?.length > 0 &&
+          {movies.length &&
             movies.map((movie, index) => {
               return (
                 <Grid item xs={4} sm={4} md={3} key={index}>
-                  <MovieCard movie={movie} map_genres={map_genres} />
+                  <MovieCard movie={movie} mapGenres={mapGenres} />
                 </Grid>
               );
             })}

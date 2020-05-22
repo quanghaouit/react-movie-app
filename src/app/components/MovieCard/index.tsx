@@ -6,7 +6,7 @@ import useStyles from './ui';
 
 interface Props {
   movie: IMovie;
-  map_genres: genreMap;
+  mapGenres: genreMap;
 }
 
 function truncate(str, n, useWordBoundary) {
@@ -17,19 +17,18 @@ function truncate(str, n, useWordBoundary) {
   return (useWordBoundary ? subString.substr(0, subString.lastIndexOf(' ')) : subString) + '...';
 }
 
-function showGenres(movie: IMovie, map_genres: genreMap) {
+function showGenres(movie: IMovie, mapGenres: genreMap) {
   return movie.genre_ids.map((genreId, index) => {
     if (index < 2) {
-      return map_genres[genreId]?.name + (index < 1 ? ', ' : ' ');
+      return mapGenres[genreId]?.name + (index < 1 ? ', ' : ' ');
     }
     if (index === 3) return '...';
   });
 }
 
 const CDN_HOST = 'https://image.tmdb.org/t/p/w500/';
-export function MovieCard({ movie, map_genres }: Props) {
+export function MovieCard({ movie, mapGenres }: Props) {
   const classes = useStyles();
-  console.log('sdfsf ' + map_genres);
   const imgSrc = CDN_HOST + movie.poster_path;
   return (
     <Card className={classes.root}>
@@ -45,7 +44,7 @@ export function MovieCard({ movie, map_genres }: Props) {
                 {truncate(movie.original_title, 20, true)}
               </Typography>
               <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p">
-                {showGenres(movie, map_genres)}
+                {showGenres(movie, mapGenres)}
               </Typography>
             </Grid>
             <Grid item container className={classes.right} direction="column" alignItems="flex-end" justify="center" xs={3}>
