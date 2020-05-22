@@ -5,24 +5,27 @@ import { createSelector } from '@reduxjs/toolkit';
 // // First select the relevant part from the state
 const selectDomain = (state: RootState) => state.homepage || initialState;
 
-export const selectNumber = createSelector(
+export const selectLoadingPage = createSelector(
   [selectDomain],
-  homepageState => homepageState.gender,
+  homepageState => homepageState.page,
 );
 
-export const selectString = createSelector(
+export const selectGenres = createSelector(
+  [selectDomain],
+  homepageState => homepageState.genres,
+);
+
+export const selectMovies = createSelector(
   [selectDomain],
   homepageState => homepageState.movies,
 );
 
-// export const selectError = createSelector(
-//   [selectDomain],
-//   githubRepoFormState => githubRepoFormState.error,
-// );
+export const selectLoading = createSelector(
+  [selectDomain],
+  homepageState => homepageState.loading,
+);
 
-// export const selectRepos = createSelector(
-//   [selectDomain],
-//   githubRepoFormState => githubRepoFormState.repositories,
-// );
-
-// export {}
+export const selectError = createSelector(
+  [selectDomain],
+  homepageState => homepageState.error,
+);

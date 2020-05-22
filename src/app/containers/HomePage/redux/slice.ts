@@ -13,14 +13,14 @@
 
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
-import { IHomePageFormState, RepoErrorType } from './types';
-// import { Repo } from 'types/Repo';
+import { IHomePageState, ResErrorType } from './types';
 
 // The initial state of the GithubRepoForm container
-export const initialState: IHomePageFormState = {
+export const initialState: IHomePageState = {
   loading: false,
   error: null,
-  gender: [],
+  page : 1,
+  genres: [],
   movies: [],
 };
 
@@ -28,23 +28,24 @@ const homepageFormSlice = createSlice({
   name: 'homepage',
   initialState,
   reducers: {
-    addArrayAndStr(state, action: PayloadAction<{ a: number; b: string; c?: string }>) {
-      const a = action.payload.a;
-      const b = action.payload.b;
-      state.gender.push(a);
-      state.movies.push(b);
+    genresLoaded(state, action: PayloadAction<any>){
+      state.loading = false;
+      state.error = null;
+      state.genres = action.payload;
     },
-    loadRepos(state) {
+    moviesLoaded(state, action: PayloadAction<any>) {
+      const repos = action.payload;
+      state.loading = false;
+      state.movies = repos;
+    },
+    pageIncrease(state){
+      state.page = state.page + 1;
+    },
+    loadApi(state) {
       state.loading = true;
       state.error = null;
-      state.gender = [];
     },
-    reposLoaded(state, action: PayloadAction<any>) {
-      const repos = action.payload;
-      state.movies = repos;
-      state.loading = false;
-    },
-    repoError(state, action: PayloadAction<RepoErrorType>) {
+    resError(state, action: PayloadAction<ResErrorType>) {
       state.error = action.payload;
       state.loading = false;
     },

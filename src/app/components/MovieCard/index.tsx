@@ -17,7 +17,7 @@ export function MovieCard() {
         <CardContent className={classes.content}>
         <Typography className={classes.year} component="h5">2017</Typography>
         <Grid container spacing={2}>
-            <Grid xs={8}>
+            <Grid container item xs={8}>
                 <Typography component="h4">
                     Logan
                 </Typography>
@@ -25,7 +25,7 @@ export function MovieCard() {
                     Action
                 </Typography>
             </Grid>
-            <Grid container direction="column" alignItems="flex-end" justify="center" xs={4}>
+            <Grid item container direction="column" alignItems="flex-end" justify="center" xs={4}>
                 <Box className={classes.point}>4.0</Box>
             </Grid>
         </Grid>
