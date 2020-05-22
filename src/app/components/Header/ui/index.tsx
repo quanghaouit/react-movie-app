@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
       top: '0px',
       zIndex: 1000,
     },
+    hide: {
+      top: '-50px',
+    },
     textRight: {
       textAlign: 'right',
     },

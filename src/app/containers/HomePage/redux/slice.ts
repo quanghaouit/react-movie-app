@@ -22,6 +22,7 @@ export const initialState: IHomePageState = {
   loading: false,
   error: null,
   page: 1,
+  type:'popular',
   genres: [],
   movies: [],
 };
@@ -39,17 +40,39 @@ const homepageFormSlice = createSlice({
       const repos = action.payload;
       state.loading = false;
       state.movies = repos;
+      state.page = 1;
     },
-    pageIncrease(state) {
-      state.page = state.page + 1;
+    pageIncrease(state, action: PayloadAction<number>) {
+      state.loading = true;
+      state.error = null;
+      const repos = action.payload;
+      state.page = repos;
     },
-    loadApi(state) {
+    loadingPage(state, action: PayloadAction<any>){
+      state.loading = false;
+      state.error = null;
+      const repos = action.payload;
+      state.movies = state.movies.concat(repos);
+      state.page = 1;
+    },
+    loadGenres(state) {
       state.loading = true;
       state.error = null;
     },
-    loadgetTopRated() {
-      // state.loading = true;
-      // state.error = null;
+    loadPopular(state) {
+      state.loading = true;
+      state.error = null;
+      state.type = 'popular';
+    },
+    loadUpComming(state) {
+      state.loading = true;
+      state.error = null;
+      state.type = 'upcoming';
+    },
+    loadTopRated(state) {
+      state.loading = true;
+      state.error = null;
+      state.type = 'top_rated';
     },
     resError(state, action: PayloadAction<ResErrorType>) {
       state.error = action.payload;

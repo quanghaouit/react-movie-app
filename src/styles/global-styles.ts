@@ -29,4 +29,7 @@ export const GlobalStyle = createGlobalStyle`
   .slick-slider .slick-dots .slick-active div {
     background-color: #f50057 !important;
   }
+  .hide{
+    display: none;
+  }
 `;

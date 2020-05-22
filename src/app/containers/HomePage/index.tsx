@@ -7,10 +7,10 @@ import { Container, CssBaseline, Typography, InputBase, Grid, Button, Paper } fr
 import { Carousel } from 'app/components/Carousel/Loadable';
 import { TabBar } from 'app/components/TabBar/Loadable';
 import { MovieCard } from 'app/components/MovieCard/Loadable';
+import { Loading } from 'app/components/Loading/Loadable';
 import useStyle from './ui';
-import { selectMovies, selectGenres, selectMapGenres } from './redux/selectors';
+import { selectMovies, selectMapGenres, selectLoading, selectLoadingPage } from './redux/selectors';
 import { homeFormSaga } from './redux/saga';
-import { IGenre } from 'types/movie';
 
 export function HomePage() {
   const classes = useStyle();
@@ -21,17 +21,25 @@ export function HomePage() {
   let dispatch = useDispatch();
 
   const movies = useSelector(selectMovies);
-  const genres = useSelector(selectGenres);
   const mapGenres = useSelector(selectMapGenres);
-  // const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector(selectLoading);
+  let page = useSelector(selectLoadingPage);
 
-  const useEffectOnMount = (effect: React.EffectCallback) => {
-    useEffect(effect, []);
+  const handleScroll = () => {
+    if (window.pageYOffset >= 1000 * page) {
+      dispatch(actions.pageIncrease( page ++));
+   }
   };
-  useEffectOnMount(() => {
-    // When initial state username is not null, submit the form to load repos
-    dispatch(actions.loadApi());
-  });
+
+  useEffect(()=>{
+    dispatch(actions.loadGenres());
+    dispatch(actions.loadPopular());
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener('mousemove', () => {})
+    }
+  },[])
   return (
     <div className={classes.root}>
       <Helmet>
@@ -53,6 +61,7 @@ export function HomePage() {
             })}
         </Grid>
       </Container>
+      {isLoading ? <Loading/> : ''}
     </div>
   );
 }

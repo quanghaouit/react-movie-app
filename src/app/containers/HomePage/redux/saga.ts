@@ -1,6 +1,6 @@
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import { request } from 'utils/request';
-import { selectLoadingPage } from './selectors';
+import { selectLoadingPage, selectLoadingPageType } from './selectors';
 import { actions } from './slice';
 import { IMoviePageResponse, IGenres, ResErrorType } from './types';
 
@@ -145,6 +145,35 @@ export function* getTopRated() {
   }
 }
 
+/**
+ * movies top rated request/response handler
+ */
+export function* loadingPage() {
+  yield delay(500);
+  const page: number = yield select(selectLoadingPage);
+  const type: string = yield select(selectLoadingPageType);
+  // Select movie popular
+  const requestURL = `https://api.themoviedb.org/3/movie/${type}?page=${page}&api_key=${apikey}`;
+
+  try {
+    // Call our request helper (see 'utils/request')
+    const repos: IMoviePageResponse = yield call(request, requestURL);
+    if (repos?.results.length > 0) {
+      yield put(actions.loadingPage(repos.results));
+    } else {
+      yield put(actions.resError(ResErrorType.REQUEST_HAS_NO_REPO));
+    }
+  } catch (err) {
+    if (err.response?.status === 404) {
+      yield put(actions.resError(ResErrorType.REQUEST_NOT_FOUND));
+    } else if (err.response?.status === 401) {
+      yield put(actions.resError(ResErrorType.INVALID_API_KEY));
+    } else {
+      yield put(actions.resError(ResErrorType.RESPONSE_ERROR));
+    }
+  }
+}
+
 // /**
 //  * Root saga manages watcher lifecycle
 //  */
@@ -153,7 +182,10 @@ export function* homeFormSaga() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(actions.loadApi.type, getGenres);
-  yield takeLatest(actions.loadApi.type, getPopular);
-  yield takeLatest(actions.loadgetTopRated.type, getTopRated);
+  yield takeLatest(actions.loadGenres.type, getGenres);
+  yield takeLatest(actions.loadPopular.type, getPopular);
+  yield takeLatest(actions.loadTopRated.type, getTopRated);
+  yield takeLatest(actions.loadUpComming.type, getUpcomming);
+  yield takeLatest(actions.pageIncrease.type, loadingPage);
+  // yield takeLatest(actions.loadgetTopRated.type, getTopRated);
 }

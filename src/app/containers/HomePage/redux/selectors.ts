@@ -8,6 +8,8 @@ const selectDomain = (state: RootState) => state.homepage || initialState;
 
 export const selectLoadingPage = createSelector([selectDomain], homepageState => homepageState.page);
 
+export const selectLoadingPageType = createSelector([selectDomain], homepageState => homepageState.type);
+
 export const selectGenres = createSelector([selectDomain], homepageState => homepageState.genres);
 
 export const selectMapGenres = createSelector([selectDomain], homepageState => {

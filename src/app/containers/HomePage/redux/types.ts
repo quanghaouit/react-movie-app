@@ -18,6 +18,7 @@ export interface IHomePageState {
   loading: boolean;
   error?: ResErrorType | null;
   page: number;
+  type: string;
   genres: IGenre[];
   movies: IMovie[];
 }
