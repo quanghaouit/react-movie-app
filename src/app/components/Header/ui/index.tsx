@@ -5,10 +5,10 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       paddingTop: '5px',
       flexGrow: 1,
-      width:'100%',
+      width: '100%',
       position: 'fixed',
       top: '0px',
-      zIndex:1000,
+      zIndex: 1000,
     },
     textRight: {
       textAlign: 'right',
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: '5px 0px',
       flexGrow: 1,
       display: 'none',
-      color:'#fff',
+      color: '#fff',
       [theme.breakpoints.up('sm')]: {
         display: 'block',
       },

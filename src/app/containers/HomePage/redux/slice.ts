@@ -14,12 +14,14 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { IHomePageState, ResErrorType } from './types';
+import _ from 'lodash';
+import { IGenre } from 'types/movie';
 
 // The initial state of the GithubRepoForm container
 export const initialState: IHomePageState = {
   loading: false,
   error: null,
-  page : 1,
+  page: 1,
   genres: [],
   movies: [],
 };
@@ -28,7 +30,7 @@ const homepageFormSlice = createSlice({
   name: 'homepage',
   initialState,
   reducers: {
-    genresLoaded(state, action: PayloadAction<any>){
+    genresLoaded(state, action: PayloadAction<any>) {
       state.loading = false;
       state.error = null;
       state.genres = action.payload;
@@ -38,7 +40,7 @@ const homepageFormSlice = createSlice({
       state.loading = false;
       state.movies = repos;
     },
-    pageIncrease(state){
+    pageIncrease(state) {
       state.page = state.page + 1;
     },
     loadApi(state) {

@@ -1,57 +1,10 @@
 import React from 'react';
-import { makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
-const AntTabs = withStyles({
-  root: {
-    borderBottom: '1px solid #eee',
-  },
-  indicator: {
-    backgroundColor: '#f50057',
-  },
-})(Tabs);
-
-const AntTab = withStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      textTransform: 'none',
-      minWidth: 72,
-      fontWeight: theme.typography.fontWeightRegular,
-      marginRight: theme.spacing(4),
-      fontFamily: ['Helvetica', 'Arial', 'sans-serif'].join(','),
-      '&:hover': {
-        color: '#f50057',
-        opacity: 1,
-      },
-      '&$selected': {
-        color: '#f50057',
-        fontWeight: theme.typography.fontWeightMedium,
-      },
-      '&:focus': {
-        color: '#f50057',
-      },
-    },
-    selected: {},
-  }),
-)((props: StyledTabProps) => <Tab disableRipple {...props} />);
-
-interface StyledTabProps {
-  label: string;
-}
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  padding: {
-    padding: theme.spacing(3),
-  },
-  tab: {
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+import { AntTabs, AntTab } from '../AntTabs';
+import BorderAllIcon from '@material-ui/icons/BorderAll';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import useStyles from './ui';
+import { Grid, Box } from '@material-ui/core';
 
 export function TabBar() {
   const classes = useStyles();
@@ -69,6 +22,12 @@ export function TabBar() {
           <AntTab label="Top Rated" />
           <AntTab label="Upcomming" />
           <AntTab label="Genner" />
+          <Grid className={classes.active} container direction="column" alignItems="flex-end" justify="center">
+            <BorderAllIcon />
+          </Grid>
+          <Grid className={classes.fixWidth} container direction="column" alignItems="flex-end" justify="center">
+            <FormatAlignLeftIcon />
+          </Grid>
         </AntTabs>
         <Typography className={classes.padding} />
       </div>

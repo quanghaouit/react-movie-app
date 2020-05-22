@@ -19,7 +19,7 @@ export function* getPageMovies() {
     // Call our request helper (see 'utils/request')
     const repos: IMoviePageResponse = yield call(request, requestURL);
     if (repos?.results.length > 0) {
-      yield put(actions.moviesLoaded(repos));
+      yield put(actions.moviesLoaded(repos.results));
     } else {
       yield put(actions.resError(ResErrorType.REQUEST_HAS_NO_REPO));
     }
@@ -46,7 +46,7 @@ export function* getGenres() {
     // Call our request helper (see 'utils/request')
     const repos: IGenres = yield call(request, requestURL);
     if (repos?.genres.length > 0) {
-      yield put(actions.genresLoaded(repos));
+      yield put(actions.genresLoaded(repos.genres));
     } else {
       yield put(actions.resError(ResErrorType.REQUEST_HAS_NO_REPO));
     }
@@ -74,7 +74,7 @@ export function* getPopular() {
     // Call our request helper (see 'utils/request')
     const repos: IMoviePageResponse = yield call(request, requestURL);
     if (repos?.results.length > 0) {
-      yield put(actions.moviesLoaded(repos));
+      yield put(actions.moviesLoaded(repos.results));
     } else {
       yield put(actions.resError(ResErrorType.REQUEST_HAS_NO_REPO));
     }
@@ -101,9 +101,8 @@ export function* getUpcomming() {
   try {
     // Call our request helper (see 'utils/request')
     const repos: IMoviePageResponse = yield call(request, requestURL);
-    console.log('dfdfd'+ repos);
     if (repos?.results.length > 0) {
-      yield put(actions.moviesLoaded(repos));
+      yield put(actions.moviesLoaded(repos.results));
     } else {
       yield put(actions.resError(ResErrorType.REQUEST_HAS_NO_REPO));
     }
@@ -156,6 +155,4 @@ export function* homeFormSaga() {
   // It will be cancelled automatically on component unmount
   yield takeLatest(actions.loadApi.type, getGenres);
   yield takeLatest(actions.loadApi.type, getPopular);
-  // yield takeLatest(actions.loadApi.type, getTopRated);
-  // yield takeLatest(actions.loadApi.type, getUpcomming);
 }

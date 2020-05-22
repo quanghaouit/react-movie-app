@@ -3,14 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { sliceKey, reducer, actions } from './redux/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, CssBaseline, Typography, InputBase, Grid, Button, Paper} from '@material-ui/core'
+import { Container, CssBaseline, Typography, InputBase, Grid, Button, Paper } from '@material-ui/core';
 import { Carousel } from 'app/components/Carousel/Loadable';
 import { TabBar } from 'app/components/TabBar/Loadable';
 import { MovieCard } from 'app/components/MovieCard/Loadable';
 import useStyle from './ui';
-import { selectLoading ,selectMovies } from './redux/selectors';
+import { selectMovies, selectGenres, selectMapGenres } from './redux/selectors';
 import { homeFormSaga } from './redux/saga';
-import { ContactSupportOutlined } from '@material-ui/icons';
+import { IGenre } from 'types/movie';
 
 export function HomePage() {
   const classes = useStyle();
@@ -19,10 +19,12 @@ export function HomePage() {
   useInjectSaga({ key: sliceKey, saga: homeFormSaga });
 
   let dispatch = useDispatch();
-  
+
   const movies = useSelector(selectMovies);
+  const genres = useSelector(selectGenres);
+  const map_genres = useSelector(selectMapGenres);
   // const isLoading = useSelector(selectLoading);
- 
+
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
   };
@@ -41,13 +43,15 @@ export function HomePage() {
       <Container>
         <TabBar />
         <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <MovieCard/>
-          </Grid>
-            { movies?.length > 0 && movies.map( movie => {
-                return <>ddd</>
-            })} 
-          </Grid>
+          {movies?.length > 0 &&
+            movies.map((movie, index) => {
+              return (
+                <Grid item xs={4} sm={4} md={3} key={index}>
+                  <MovieCard movie={movie} map_genres={map_genres} />
+                </Grid>
+              );
+            })}
+        </Grid>
       </Container>
     </div>
   );

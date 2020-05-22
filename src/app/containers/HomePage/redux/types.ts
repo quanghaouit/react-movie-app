@@ -1,34 +1,12 @@
-
+import { IMovie, IGenre } from 'types/movie';
 interface IPageResponse {
   page: number;
   total_results: number;
   total_pages: number;
 }
 
-interface IMovie {
-  popularity : number;
-  vote_count : number;
-  video : Boolean;
-  poster_path : String;
-  id : number;
-  adult : Boolean;
-  backdrop_path: String;
-  original_language : String;
-  original_title : String;
-  genre_ids : number[];
-  title : String;
-  vote_average: number;
-  overview : String;
-  release_date: String;
-}
-
 export interface IMoviePageResponse extends IPageResponse {
   results: IMovie[];
-}
-
-interface IGenre {
-  id: number;
-  name: String;
 }
 
 export interface IGenres {
